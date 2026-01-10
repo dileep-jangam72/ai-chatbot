@@ -3,21 +3,25 @@ from google.cloud import bigquery
 # Create BigQuery client
 client = bigquery.Client(project="nlq-gemini-bq-demo")
 
-def get_sales_data():
-    query = """
-    SELECT
-      order_id,
-      country,
-      order_date,
-      revenue
-    FROM `nlq-gemini-bq-demo.chatbot.sales_data`
-    ORDER BY order_date
+
+def run_query(sql: str):
+    """
+    Executes a SELECT query on BigQuery and returns results as list of dicts
     """
 
-    query_job = client.query(query)
+    if not sql or not sql.strip():
+        raise ValueError("SQL query is empty")
+
+    # Extra safety: allow only SELECT
+    if not sql.strip().lower().startswith("select"):
+        raise ValueError("Only SELECT queries are allowed")
+
+    print("Executing SQL:\n", sql)  # Debug log (very useful)
+
+    query_job = client.query(sql)
 
     results = []
-    for row in query_job:
+    for row in query_job.result():
         results.append(dict(row))
 
     return results
