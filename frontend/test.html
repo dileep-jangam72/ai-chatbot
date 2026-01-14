@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat-container {
+  width: 400px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+}
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 2px solid red;
+}
+.input-area {
+  flex-shrink: 0;
+  padding: 10px;
+  background: #eee;
+}
+</style>
+</head>
+<body>
+<div class="chat-container">
+  <div class="messages" id="messages">
+    <div>Message 1</div>
+    <div>Message 2</div>
+    <div>Message 3</div>
+    <div>Message 4</div>
+    <div>Message 5</div>
+    <div>Message 6</div>
+    <div>Message 7</div>
+    <div>Message 8</div>
+    <div>Message 9</div>
+    <div>Message 10</div>
+  </div>
+  <div class="input-area">
+    <input type="text">
+    <button>Send</button>
+  </div>
+</div>
+</body>
+</html>
